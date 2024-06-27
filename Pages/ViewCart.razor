@@ -1,0 +1,16 @@
+﻿@page "/viewcart"
+@using ProductApp_1165395.ModelsVM
+@using ProductApp_1165395.DataLayer
+@using ProductApp_1165395.Pages.Components
+@inject ICartRepository cartRepository
+<br />
+<ShoppingCart MyCart="CList" />
+25
+@code {
+List<CartItem> CList;
+protected async override void OnAfterRender(bool firstRender)
+{
+CList = await cartRepository.GetCart();
+await InvokeAsync(StateHasChanged);
+}
+}
